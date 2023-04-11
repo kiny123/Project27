@@ -38,6 +38,8 @@ class ViewController: UIViewController {
             drawImagesAndText()
         case 6:
             drawEmoji()
+        case 7:
+            drawTwin()
             
         default:
             break
@@ -219,6 +221,100 @@ class ViewController: UIViewController {
         ctx.drawPath(using: .fill)
         ctx.translateBy(x: -positionX, y: -positionY)
     }
+    
+    func drawTwin() {
+            let imageWidth = 780
+            let renderer = UIGraphicsImageRenderer(size: CGSize(width: imageWidth, height: 512))
+            let spacing = CGFloat((imageWidth - 128) / 5)
+            let offset = CGFloat(30)
+            let image = renderer.image { ctx in
+                //let rectangle = CGRect(x: 0, y: 0, width: 512, height: 512)
+                let letterPositionY = CGFloat(192)
+                drawT(ctx: ctx.cgContext, positionX: offset + 1.0 * spacing, positionY: letterPositionY)
+                drawW(ctx: ctx.cgContext, positionX: offset + 2.0 * spacing, positionY: letterPositionY)
+                drawI(ctx: ctx.cgContext, positionX: offset + 3.0 * spacing, positionY: letterPositionY)
+                drawN(ctx: ctx.cgContext, positionX: offset + 4.0 * spacing, positionY: letterPositionY)
+            }
+            imageView.image = image
+        }
+
+        func drawT(ctx: CGContext, positionX: CGFloat, positionY: CGFloat) {
+            let width = CGFloat(130)
+            let height = CGFloat(128)
+            ctx.setFillColor(UIColor.black.cgColor)
+            ctx.translateBy(x: positionX, y: positionY)
+            ctx.move(to: CGPoint(x: -width / 2, y: 0))
+            ctx.addLine(to: CGPoint(x: width / 2, y: 0))
+            ctx.move(to: CGPoint(x: 0, y: 0))
+            ctx.addLine(to: CGPoint(x: 0, y: height))
+            UIColor.black.setStroke()
+            ctx.setStrokeColor(UIColor.black.cgColor)
+            ctx.strokePath()
+            ctx.translateBy(x: -positionX, y: -positionY)
+        }
+
+        func drawW(ctx: CGContext, positionX: CGFloat, positionY: CGFloat) {
+            ctx.setFillColor(UIColor.black.cgColor)
+            let width = CGFloat(130/4)
+            let height = CGFloat(128)
+            ctx.translateBy(x: positionX, y: positionY)
+            ctx.move(to: CGPoint(x: 0, y: 0))
+            ctx.addLine(to: CGPoint(x: -width, y: height))
+            ctx.addLine(to: CGPoint(x: -2*width, y: 0))
+            ctx.move(to: CGPoint(x: 0, y: 0))
+            ctx.addLine(to: CGPoint(x: width, y: height))
+            ctx.addLine(to: CGPoint(x: 2*width, y: 0))
+
+            UIColor.black.setStroke()
+            ctx.setStrokeColor(UIColor.black.cgColor)
+            ctx.strokePath()
+            ctx.translateBy(x: -positionX, y: -positionY)
+        }
+
+        func drawI(ctx: CGContext, positionX: CGFloat, positionY: CGFloat) {
+            ctx.setFillColor(UIColor.black.cgColor)
+            let height = CGFloat(128)
+            ctx.translateBy(x: positionX, y: positionY)
+            ctx.move(to: CGPoint(x: 0, y: 0))
+            ctx.addLine(to: CGPoint(x: 0, y: height))
+            UIColor.black.setStroke()
+            ctx.setStrokeColor(UIColor.black.cgColor)
+            ctx.strokePath()
+            ctx.translateBy(x: -positionX, y: -positionY)
+        }
+
+        func drawN(ctx: CGContext, positionX: CGFloat, positionY: CGFloat) {
+            ctx.setFillColor(UIColor.black.cgColor)
+            let width = CGFloat(130)
+            let height = CGFloat(128)
+            ctx.translateBy(x: positionX, y: positionY)
+            ctx.move(to: CGPoint(x: -width / 2, y: height))
+            ctx.addLine(to: CGPoint(x: -width / 2, y: 0))
+            ctx.addLine(to: CGPoint(x: width / 2, y: height))
+            ctx.addLine(to: CGPoint(x: width / 2, y: 0))
+
+            UIColor.black.setStroke()
+            ctx.setStrokeColor(UIColor.black.cgColor)
+            ctx.strokePath()
+            ctx.translateBy(x: -positionX, y: -positionY)
+        }
+
+        func drawK(ctx: CGContext, positionX: CGFloat, positionY: CGFloat) {
+            ctx.setFillColor(UIColor.black.cgColor)
+            let width = CGFloat(130)
+            let height = CGFloat(128)
+            ctx.translateBy(x: positionX, y: positionY)
+            ctx.move(to: CGPoint(x: 0, y: 0))
+            ctx.addLine(to: CGPoint(x: 0, y: height))
+            ctx.move(to: CGPoint(x: 0, y: height/2))
+            ctx.addLine(to: CGPoint(x: width - 10, y: 0))
+            ctx.move(to: CGPoint(x: 0, y: height/2))
+            ctx.addLine(to: CGPoint(x: width - 10, y: height))
+
+            ctx.setStrokeColor(UIColor.red.cgColor)
+            ctx.strokePath()
+            ctx.translateBy(x: -positionX, y: -positionY)
+        }
     
     
 }
